@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DevOps Todo</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <style>
+        body{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>DevOps - TODO</h1>
+    {{ form_begin(form) }}
+    <div class="row">
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form_control(form, 'description', {'id': 'task_description'}) }}
+                <label for="task_description">Description</label>
+            </div>
+        </div>
+    </div>
+    {{ form_close(form) }}
+
+    <ul class="collection">
+        {% for task in tasks %}
+            <li class="collection-item">
+                <div>
+                    {{ task.description }}
+                    <a onclick="deleteTask('{{ task.id }}')" class="secondary-content" style="cursor:pointer;">
+                        <i class="material-icons">delete_forever</i>
+                    </a>
+                </div>
+            </li>
+        {% else %}
+            <li class="collection-item">Aucune tâche pour le moment!</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    });
+
+    function deleteTask(id){
+        if(confirm('Confirmez-vous la suppression de cette tâche ?')){
+            let path = '{{ route('delete_task', {'id': '_id'}) }}';
+            path = path.replace('_id', id);
+            window.location.href = path;
+        }
+    }
+</script>
+</body>
+</html>
