@@ -19,11 +19,12 @@
     <h1>DevOps - TODO</h1>
     {{ form_begin(form) }}
     <div class="row">
-        <div class="row">
-            <div class="input-field col s12">
-                {{ form_control(form, 'description', {'id': 'task_description'}) }}
-                <label for="task_description">Description</label>
-            </div>
+        <div class="input-field col s11">
+            {{ form_control(form, 'description', {'id': 'task_description'}) }}
+            <label for="task_description">Description</label>
+        </div>
+        <div class="input-field col s1">
+            <button type="submit" class="waves-effect waves-light btn">Ajouter</button>
         </div>
     </div>
     {{ form_close(form) }}

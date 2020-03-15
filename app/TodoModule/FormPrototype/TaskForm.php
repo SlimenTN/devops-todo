@@ -11,7 +11,9 @@ class TaskForm implements FormBuilderInterface
     public function buildFormPrototype(FormBuilder $builder)
     {
         $builder
-            ->addInput('description', 'text')
+            ->addInput('description', 'text', 'Description', array(
+                'required' => true,
+            ))
         ;
         
         return $builder;
